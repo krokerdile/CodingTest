@@ -1,7 +1,13 @@
 const fs = require('fs');
-const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-let input = fs.readFileSync(filePath).toString().trim().split(' ');
+const filePath = process.platform === 'linux' ? 'dev/stdin' : '../input.txt';
+const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
-const sum = input.reduce((num1, num2) => num1 + num2 * num2, 0);
+let num = input[0].split(' ').map(Number);
 
-console.log(sum % 10);
+let answer = 0;
+
+num.forEach((x) => {
+  answer += x * x;
+});
+
+console.log(answer % 10);
