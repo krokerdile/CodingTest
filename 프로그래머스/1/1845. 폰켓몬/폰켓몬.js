@@ -1,17 +1,13 @@
 function solution(nums) {
+    var answer = 0;
     
-    let list = {};
-    nums.map((x)=>list[x] = x)
-    console.log(list);
-    console.log(Object.keys(list).length);
-    let temp = Object.keys(list).length;
-
-    while(1){
-        if(nums.length / 2 >= temp ){
-            break;
-         }
-        temp -= 1;
-    }
-
-    return temp;
+    let numSet = new Set(nums);
+    
+    let half = parseInt(nums.length/2);
+    
+    const array = [...numSet];
+    
+    answer = half < array.length ? half : array.length;
+    
+    return answer;
 }
