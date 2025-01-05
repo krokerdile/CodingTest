@@ -1,13 +1,12 @@
 function solution(phone_book) {
-    var answer = true;
+    // 번호들을 정렬
+    phone_book.sort();
     
-    phone_book = phone_book.sort();
-    
-    for(let j=0; j<phone_book.length-1; j++){
-         if( phone_book[j+1].startsWith(phone_book[j])){
+    // 인접한 번호들만 비교
+    for (let i = 0; i < phone_book.length - 1; i++) {
+        if (phone_book[i + 1].startsWith(phone_book[i])) {
             return false;
-         }
+        }
     }
-    
-    return answer;
+    return true;
 }
