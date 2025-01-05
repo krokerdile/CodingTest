@@ -1,16 +1,19 @@
 function solution(clothes) {
-    // 의상 종류별로 나누기
-    const clothesMap = clothes.reduce((acc, [name, type]) => {
-        acc[type] = (acc[type] || 0) + 1;
-        return acc;
-    }, {});
-
-    // 각 의상 종류마다 선택할 수 있는 경우의 수를 계산
-    let combinations = 1;
-    for (let type in clothesMap) {
-        combinations *= (clothesMap[type] + 1); // 선택하지 않는 경우 포함
+    let answer = 1;
+    
+    // 의상 종류별 개수를 저장하는 Map
+    let map = new Map();
+    
+    // 의상 종류별 개수 계산
+    clothes.forEach((cloth) => {
+        map.set(cloth[1], map.has(cloth[1]) ? map.get(cloth[1]) + 1 : 1);
+    });
+    
+    // 각 의상 종류별로 (의상 개수 + 1)을 곱함
+    for (let count of map.values()) {
+        answer *= (count + 1);
     }
-
-    // 아무것도 선택하지 않는 경우를 뺌
-    return combinations - 1;
+    
+    // 아무것도 입지 않는 경우 제외
+    return answer - 1;
 }
