@@ -1,23 +1,23 @@
 function solution(s){
     var answer = true;
 
-    let list = [];
+    let list = s.split("");
+    let array = [];
     
-    let temp = s.split("");
-    
-    temp.map((q)=>{
-        let len = list.length;
-        if(list.length == 0 | q == '('){
-            list.push(q);
+    for(let i=0; i<list.length; i++){
+        if(array.length == 0 && list[i] == ')'){
+            answer = false;
+            break;            
         }
-        if(q == ')'){
-            if(list[len-1] == '('){
-                list.pop();
+        if(list[i] == '('){
+            array.push('(');
+        }else{
+            if(array[array.length-1] == '('){
+                array.pop();
             }
         }
-    })
-    if(list.length > 0){
-        answer = false;
     }
+    if(array.length > 0) answer = false;
+    
     return answer;
 }
