@@ -48,6 +48,7 @@ for (let i = 0; i < N; i++) {
 
 //cctv를 찾아서 돌면서 5가지 경우의 수를 찾아야함
 //찾았을때 해당 cctv가 가장 사각지대를 많이 볼 수 있는 경우를 찾아야함
+//idx는 cctv 배열의 현재 위치를 전달해주기 위함
 function dfs(office, cctv, idx) {
   if (idx === cctv.length) {
     let count = 0;
@@ -66,12 +67,15 @@ function dfs(office, cctv, idx) {
 
   let [cctvType, x, y] = cctv[idx];
 
-  //백트래킹을 해야지 회전 하는 경우를 찾을 수 있음
+  //백트래킹을 해야지 회전 하는 경우를 찾을 수 있음 >> bfs로는 안되지 않을까?
   //  let temp = office.map((v) => v.slice());
 
   for (let i = 0; i < type[cctvType - 1].length; i++) {
     //회전을 적용하기 위한 백트래킹
-    let temp = office.map((v) => v.slice());
+    let temp = office.map((v) => {
+      return [...v];
+    });
+
     for (let j = 0; j < type[cctvType - 1][i].length; j++) {
       let nx = x;
       let ny = y;
